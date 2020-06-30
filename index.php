@@ -128,7 +128,7 @@
                $tieude = $_POST['ftieude'];
                $noidung = $_POST['fnoidung'];
                $userID = 1;
-               $servername = "jpappnews.scm.azurewebsites.net";
+               $servername = "127.0.0.1:50659";
                $username = "root";
                $password = "root";
                $dbname = "localdb";
