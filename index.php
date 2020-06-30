@@ -50,16 +50,16 @@
                </div>
             </form>
             <?php
-           $imageName = 'test';
+            $imageName = 'test';
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                $imageName = basename($_FILES['fileToUpload']['name']);
-            $accesskey = "LnR0IBUizNhXYAHHBPMLeYxhc4th/FrHiNojWLLg9AMZoTa6Jhp9tNUjOW14b4Qjwxw04erQ/V8I++nupqoKZA==";
-            $storageAccount = 'nothingjs';
-            $filetoUpload = $_FILES['fileToUpload']['tmp_name'];
-            $containerName = 'public-contents';
-            $blobName = basename($_FILES["fileToUpload"]["name"]);
+               $accesskey = "LnR0IBUizNhXYAHHBPMLeYxhc4th/FrHiNojWLLg9AMZoTa6Jhp9tNUjOW14b4Qjwxw04erQ/V8I++nupqoKZA==";
+               $storageAccount = 'nothingjs';
+               $filetoUpload = $_FILES['fileToUpload']['tmp_name'];
+               $containerName = 'public-contents';
+               $blobName = basename($_FILES["fileToUpload"]["name"]);
 
-            $destinationURL = "https://$storageAccount.blob.core.windows.net/$containerName/$blobName";   
+               $destinationURL = "https://$storageAccount.blob.core.windows.net/$containerName/$blobName";
                uploadBlob($filetoUpload, $storageAccount, $containerName, $blobName, $destinationURL, $accesskey);
             }
 
@@ -121,37 +121,37 @@
 
                echo ('Error<br/>');
                print_r(curl_error($ch));
- // upload image
-                   
-                   // collect value of input field
-                   $menuID = 1;
-                   $tieude = $_POST['ftieude'];
-                   $noidung = $_POST['fnoidung'];
-                   $userID = 1;
-                  $servername = "blinetest.000webhostapp.com";
-                  $username = "id13707777_b2b2b2b2";
-                  $password = "yYFMA97Vv7?BVF~x";
-                  $dbname = "id13707777_b1b1b1b1";
-                   $date_now = date("Y-m-d h:i:s");
+               // upload image
 
-                   // Create connection
-                   $conn = new mysqli($servername, $username, $password, $dbname);
-                   // Check connection
-                   if ($conn->connect_error) {
-                   die("Connection failed: " . $conn->connect_error);
-                   }
+               // collect value of input field
+               $menuID = 1;
+               $tieude = $_POST['ftieude'];
+               $noidung = $_POST['fnoidung'];
+               $userID = 1;
+               $servername = "jpappnews.scm.azurewebsites.net";
+               $username = "root";
+               $password = "root";
+               $dbname = "localdb";
+               $date_now = date("Y-m-d h:i:s");
 
-                   $sql = "INSERT INTO bantin_tbl (menuID, tieude, noidung, userID, insertDate, urlImage)
-                   VALUES (" .$menuID. "," ."'" .$tieude ."'". ", " ."'" .$noidung ."'". ", " ."'" .$userID."'". "," ."'" .$date_now . "'". "," ."'" .$imageName . "'". ") ";
+               // Create connection
+               $conn = new mysqli($servername, $username, $password, $dbname);
+               // Check connection
+               if ($conn->connect_error) {
+                  die("Connection failed: " . $conn->connect_error);
+               }
 
-                   if ($conn->query($sql) === TRUE) {
-                   printf ("New Record has id %d.\n", $conn->insert_id);
-                   echo "created successfully:";
-                   } else {
-                   echo "Error: " . $sql . "<br>" . $conn->error;
-                   }
+               $sql = "INSERT INTO bantin_tbl (menuID, tieude, noidung, userID, insertDate, urlImage)
+                   VALUES (" . $menuID . "," . "'" . $tieude . "'" . ", " . "'" . $noidung . "'" . ", " . "'" . $userID . "'" . "," . "'" . $date_now . "'" . "," . "'" . $imageName . "'" . ") ";
 
-                   $conn->close();
+               if ($conn->query($sql) === TRUE) {
+                  printf("New Record has id %d.\n", $conn->insert_id);
+                  echo "created successfully:";
+               } else {
+                  echo "Error: " . $sql . "<br>" . $conn->error;
+               }
+
+               $conn->close();
                curl_close($ch);
             }
             ?>
