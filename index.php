@@ -137,31 +137,41 @@
                $dsn = 'mysql:dbname=localdb;host=127.0.0.1:50659;charset=utf8';
                $user = 'root';
                $password = 'root';
-               
-               try {
-                   $dbh = new PDO($dsn, $user, $password);
-               } catch (PDOException $e) {
-                   echo 'Connection failed: ' . $e->getMessage();
-                   exit;
-               }
-               // Create connection
-               $conn = new mysqli($servername, $username, $password, $dbname);
-               // Check connection
-               if ($conn->connect_error) {
-                  die("Connection failed: " . $conn->connect_error);
-               }
+               $conn = getenv("MYSQLCONNSTR_localdb"); 
 
-               $sql = "INSERT INTO bantin_tbl (menuID, tieude, noidung, userID, insertDate, urlImage)
-                   VALUES (" . $menuID . "," . "'" . $tieude . "'" . ", " . "'" . $noidung . "'" . ", " . "'" . $userID . "'" . "," . "'" . $date_now . "'" . "," . "'" . $imageName . "'" . ") ";
+    //Let's split it and decorate it in an array
+    $conarr2 = explode(";",$conn); 
+    $conarr = array();
+    foreach($conarr2 as $key=>$value){
+        $k = substr($value,0,strpos($value,'='));
+        $conarr[$k] = substr($value,strpos($value,'=')+1);
+    }
+    // $conarr is an array of values of connection string
+    print_r($conarr); 
+               // try {
+               //     $dbh = new PDO($dsn, $user, $password);
+               // } catch (PDOException $e) {
+               //     echo 'Connection failed: ' . $e->getMessage();
+               //     exit;
+               // }
+               // // Create connection
+               // $conn = new mysqli($servername, $username, $password, $dbname);
+               // // Check connection
+               // if ($conn->connect_error) {
+               //    die("Connection failed: " . $conn->connect_error);
+               // }
 
-               if ($conn->query($sql) === TRUE) {
-                  printf("New Record has id %d.\n", $conn->insert_id);
-                  echo "created successfully:";
-               } else {
-                  echo "Error: " . $sql . "<br>" . $conn->error;
-               }
+               // $sql = "INSERT INTO bantin_tbl (menuID, tieude, noidung, userID, insertDate, urlImage)
+               //     VALUES (" . $menuID . "," . "'" . $tieude . "'" . ", " . "'" . $noidung . "'" . ", " . "'" . $userID . "'" . "," . "'" . $date_now . "'" . "," . "'" . $imageName . "'" . ") ";
 
-               $conn->close();
+               // if ($conn->query($sql) === TRUE) {
+               //    printf("New Record has id %d.\n", $conn->insert_id);
+               //    echo "created successfully:";
+               // } else {
+               //    echo "Error: " . $sql . "<br>" . $conn->error;
+               // }
+
+               // $conn->close();
                curl_close($ch);
             }
             ?>
