@@ -53,8 +53,8 @@
             $imageName = 'test';
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                $imageName = basename($_FILES['fileToUpload']['name']);
-               $accesskey = "LnR0IBUizNhXYAHHBPMLeYxhc4th/FrHiNojWLLg9AMZoTa6Jhp9tNUjOW14b4Qjwxw04erQ/V8I++nupqoKZA==";
-               $storageAccount = 'nothingjs';
+               $accesskey = "eogTzrMdKpT4I+7P/xk0HrPpGrrEE8VTHVh8QJk49+u5g5krLzkjH4kt4NHfZir2NjU3vCAj9czKX/EcEtlLKQ==";
+               $storageAccount = 'jpnews';
                $filetoUpload = $_FILES['fileToUpload']['tmp_name'];
                $containerName = 'public-contents';
                $blobName = basename($_FILES["fileToUpload"]["name"]);
