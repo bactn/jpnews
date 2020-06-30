@@ -50,9 +50,9 @@
                </div>
             </form>
             <?php
-            $imageName = 'test';
+            
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-               $imageName = basename($_FILES['fileToUpload']['name']);
+               // $imageName = basename($_FILES['fileToUpload']['name']);
                $accesskey = "eogTzrMdKpT4I+7P/xk0HrPpGrrEE8VTHVh8QJk49+u5g5krLzkjH4kt4NHfZir2NjU3vCAj9czKX/EcEtlLKQ==";
                $storageAccount = 'jpnews';
                $filetoUpload = $_FILES['fileToUpload']['tmp_name'];
@@ -66,7 +66,7 @@
 
             function uploadBlob($filetoUpload, $storageAccount, $containerName, $blobName, $destinationURL, $accesskey)
             {
-
+               $imageName = 'test';
                $currentDate = gmdate("D, d M Y H:i:s T", time());
                $handle = fopen($filetoUpload, 'r');
                $fileLen = filesize($filetoUpload);
@@ -137,17 +137,17 @@
                $dsn = 'mysql:dbname=localdb;host=127.0.0.1:50659;charset=utf8';
                $user = 'root';
                $password = 'root';
-               $conn = getenv("MYSQLCONNSTR_localdb"); 
+               $conn = getenv("MYSQLCONNSTR_localdb");
 
-    //Let's split it and decorate it in an array
-    $conarr2 = explode(";",$conn); 
-    $conarr = array();
-    foreach($conarr2 as $key=>$value){
-        $k = substr($value,0,strpos($value,'='));
-        $conarr[$k] = substr($value,strpos($value,'=')+1);
-    }
-    // $conarr is an array of values of connection string
-    print_r($conarr); 
+               //Let's split it and decorate it in an array
+               $conarr2 = explode(";", $conn);
+               $conarr = array();
+               foreach ($conarr2 as $key => $value) {
+                  $k = substr($value, 0, strpos($value, '='));
+                  $conarr[$k] = substr($value, strpos($value, '=') + 1);
+               }
+               // $conarr is an array of values of connection string
+               print_r($conarr);
                // try {
                //     $dbh = new PDO($dsn, $user, $password);
                // } catch (PDOException $e) {
@@ -161,8 +161,8 @@
                //    die("Connection failed: " . $conn->connect_error);
                // }
 
-               // $sql = "INSERT INTO bantin_tbl (menuID, tieude, noidung, userID, insertDate, urlImage)
-               //     VALUES (" . $menuID . "," . "'" . $tieude . "'" . ", " . "'" . $noidung . "'" . ", " . "'" . $userID . "'" . "," . "'" . $date_now . "'" . "," . "'" . $imageName . "'" . ") ";
+               $sql = "INSERT INTO bantin_tbl (menuID, tieude, noidung, userID, insertDate, urlImage)
+                   VALUES (" . $menuID . "," . "'" . $tieude . "'" . ", " . "'" . $noidung . "'" . ", " . "'" . $userID . "'" . "," . "'" . $date_now . "'" . "," . "'" . $imageName . "'" . ") ";
 
                // if ($conn->query($sql) === TRUE) {
                //    printf("New Record has id %d.\n", $conn->insert_id);
