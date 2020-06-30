@@ -119,7 +119,7 @@
                echo ('Result<br/>');
                print_r($result);
 
-               echo ('Error<br/>');
+               // echo ('Error<br/>');
                print_r(curl_error($ch));
                // upload image
 
@@ -129,49 +129,29 @@
                $noidung = $_POST['fnoidung'];
                $userID = 1;
                $servername = "127.0.0.1:50659";
-               $username = "root";
-               $password = "root";
+               $username = "azure";
+               $password = "6#vWHD_$ )";
                $dbname = "localdb";
                $date_now = date("Y-m-d h:i:s");
 
-               $dsn = 'mysql:dbname=localdb;host=127.0.0.1:50659;charset=utf8';
-               $user = 'root';
-               $password = 'root';
-               $conn = getenv("MYSQLCONNSTR_localdb");
-
-               //Let's split it and decorate it in an array
-               $conarr2 = explode(";", $conn);
-               $conarr = array();
-               foreach ($conarr2 as $key => $value) {
-                  $k = substr($value, 0, strpos($value, '='));
-                  $conarr[$k] = substr($value, strpos($value, '=') + 1);
+               // Create connection
+               $conn = new mysqli($servername, $username, $password, $dbname);
+               // Check connection
+               if ($conn->connect_error) {
+                  die("Connection failed: " . $conn->connect_error);
                }
-               // $conarr is an array of values of connection string
-               print_r($conarr);
-               // try {
-               //     $dbh = new PDO($dsn, $user, $password);
-               // } catch (PDOException $e) {
-               //     echo 'Connection failed: ' . $e->getMessage();
-               //     exit;
-               // }
-               // // Create connection
-               // $conn = new mysqli($servername, $username, $password, $dbname);
-               // // Check connection
-               // if ($conn->connect_error) {
-               //    die("Connection failed: " . $conn->connect_error);
-               // }
 
                $sql = "INSERT INTO bantin_tbl (menuID, tieude, noidung, userID, insertDate, urlImage)
                    VALUES (" . $menuID . "," . "'" . $tieude . "'" . ", " . "'" . $noidung . "'" . ", " . "'" . $userID . "'" . "," . "'" . $date_now . "'" . "," . "'" . $imageName . "'" . ") ";
 
-               // if ($conn->query($sql) === TRUE) {
-               //    printf("New Record has id %d.\n", $conn->insert_id);
-               //    echo "created successfully:";
-               // } else {
-               //    echo "Error: " . $sql . "<br>" . $conn->error;
-               // }
+               if ($conn->query($sql) === TRUE) {
+                  printf("New Record has id %d.\n", $conn->insert_id);
+                  echo "created successfully:";
+               } else {
+                  echo "Error: " . $sql . "<br>" . $conn->error;
+               }
 
-               // $conn->close();
+               $conn->close();
                curl_close($ch);
             }
             ?>
