@@ -10,47 +10,40 @@
    <section class="hero">
       <div class="hero-body">
          <div class="container">
+         <p class="has-text-centered has-text-weight-bold title">FAITO</p>
             <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data">
-               <div class="field">
-                  <label class="label">メニュー：</label>
-                  <label class="checkbox">
-                     <input type="checkbox">
-                     ホーム
-                  </label>
-                  <label class="checkbox">
-                     <input type="checkbox">
-                     ニュース
-                  </label>
-                  <label class="checkbox">
-                     <input type="checkbox">
-                     生活
-                  </label>
-                  <label class="checkbox">
-                     <input type="checkbox">
-                     学習
-                  </label>
-                  <label class="checkbox">
-                     <input type="checkbox">
-                     お仕事
-                  </label>
+               <label class="label">メニュー：</label>
+               <div class="select is-primary">
+                  <select name="categoryOption">
+                     <option value="1">ニュース</option>
+                     <option value="2">生活</option>
+                     <option value="3">学習</option>
+                     <option value="4">お仕事</option>
+                  </select>
                </div>
-               <div>
+
+               <div class="mt-5">
                   <label class="label">タイトル：</label>
                   <input class="input is-primary" name="ftieude" type="text" placeholder="タイトルを入力して下さい。">
                </div>
-               <div>
+
+               <div class="mt-5">
                   <label class="label">内容：</label>
                   <textarea class="textarea is-primary" name="fnoidung" placeholder="内容を入力して下さい。"></textarea>
                </div>
-               <label class="label"></label>
-               <input type="file" name="fileToUpload" id="fileToUpload">
-               <label class="label"></label>
-               <div>
+
+               <div class="mt-5">
+                  <label class="label"></label>
+                  <input type="file" name="fileToUpload" id="fileToUpload">
+                  <label class="label"></label>
+               </div>
+
+               <div class="mt-5">
                   <button class="button" type="submit">完了</button>
                </div>
             </form>
             <?php
-            
+
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                // $imageName = basename($_FILES['fileToUpload']['name']);
                $accesskey = "eogTzrMdKpT4I+7P/xk0HrPpGrrEE8VTHVh8QJk49+u5g5krLzkjH4kt4NHfZir2NjU3vCAj9czKX/EcEtlLKQ==";
@@ -60,17 +53,21 @@
                $blobName = basename($_FILES["fileToUpload"]["name"]);
 
                $destinationURL = "https://$storageAccount.blob.core.windows.net/$containerName/$blobName";
-               uploadBlob($filetoUpload, $storageAccount, $containerName, $blobName, $destinationURL, $accesskey);
+               if ($blobName != "") {
+                  // Upload URL   
+                  uploadBlob($filetoUpload, $storageAccount, $containerName, $blobName, $destinationURL, $accesskey);
+               }
+
+               // Update DB
+               updateDB($destinationURL);
             }
 
 
             function uploadBlob($filetoUpload, $storageAccount, $containerName, $blobName, $destinationURL, $accesskey)
             {
-               $imageName = 'test';
                $currentDate = gmdate("D, d M Y H:i:s T", time());
                $handle = fopen($filetoUpload, 'r');
                $fileLen = filesize($filetoUpload);
-               echo "file size:" . $fileLen;
                $headerResource = "x-ms-blob-cache-control:max-age=3600\nx-ms-blob-type:BlockBlob\nx-ms-date:$currentDate\nx-ms-version:2015-12-11";
                $urlResource = "/$storageAccount/$containerName/$blobName";
 
@@ -122,9 +119,14 @@
                // echo ('Error<br/>');
                print_r(curl_error($ch));
                // upload image
+               curl_close($ch);
+            }
 
+            function updateDB($destinationURL)
+            {
                // collect value of input field
-               $menuID = 1;
+               $selectedCatID = $_POST['categoryOption'];
+               //echo "cat select: " .$selectOption;
                $tieude = $_POST['ftieude'];
                $noidung = $_POST['fnoidung'];
                $userID = 1;
@@ -133,40 +135,38 @@
                $username = "";
                $password = "";
                $dbname = "";
-               
                // Parsing connnection string
                foreach ($_SERVER as $key => $value) {
-                   if (strpos($key, "MYSQLCONNSTR_") !== 0) {
-                       continue;
-                   }
-                   
-                   $servername = preg_replace("/^.*Data Source=(.+?);.*$/", "\\1", $value);
-                   $dbname = preg_replace("/^.*Database=(.+?);.*$/", "\\1", $value);
-                   $username = preg_replace("/^.*User Id=(.+?);.*$/", "\\1", $value);
-                   $password = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
+                  if (strpos($key, "MYSQLCONNSTR_") !== 0) {
+                     continue;
+                  }
+
+                  $servername = preg_replace("/^.*Data Source=(.+?);.*$/", "\\1", $value);
+                  $dbname = preg_replace("/^.*Database=(.+?);.*$/", "\\1", $value);
+                  $username = preg_replace("/^.*User Id=(.+?);.*$/", "\\1", $value);
+                  $password = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
                }
-               
+
                // Create connection
                $conn = new mysqli($servername, $username, $password, $dbname);
                // Check connection
                if ($conn->connect_error) {
-                   die("Connection failed: " . $conn->connect_error);
+                  die("Connection failed: " . $conn->connect_error);
                } else {
-                   echo "connection successful<br/>";
+                  echo "connection successful<br/>";
                }
 
                $sql = "INSERT INTO bantin_tbl (menuID, tieude, noidung, userID, insertDate, urlImage)
-                   VALUES (" . $menuID . "," . "'" . $tieude . "'" . ", " . "'" . $noidung . "'" . ", " . "'" . $userID . "'" . "," . "'" . $date_now . "'" . "," . "'" . $imageName . "'" . ") ";
+                   VALUES (" . $selectedCatID . "," . "'" . $tieude . "'" . ", " . "'" . $noidung . "'" . ", " . "'" . $userID . "'" . "," . "'" . $date_now . "'" . "," . "'" . $destinationURL . "'" . ") ";
 
                if ($conn->query($sql) === TRUE) {
-                  printf("New Record has id %d.\n", $conn->insert_id);
+                  // printf("New Record has id %d.\n", $conn->insert_id);
                   echo "created successfully:";
                } else {
                   echo "Error: " . $sql . "<br>" . $conn->error;
                }
 
                $conn->close();
-               curl_close($ch);
             }
             ?>
          </div>
