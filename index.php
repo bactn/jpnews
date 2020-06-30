@@ -134,6 +134,16 @@
                $dbname = "localdb";
                $date_now = date("Y-m-d h:i:s");
 
+               $dsn = 'mysql:dbname=localdb;host=127.0.0.1:50659;charset=utf8';
+               $user = 'root';
+               $password = 'root';
+               
+               try {
+                   $dbh = new PDO($dsn, $user, $password);
+               } catch (PDOException $e) {
+                   echo 'Connection failed: ' . $e->getMessage();
+                   exit;
+               }
                // Create connection
                $conn = new mysqli($servername, $username, $password, $dbname);
                // Check connection
