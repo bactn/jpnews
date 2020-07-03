@@ -47,13 +47,14 @@
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                // $imageName = basename($_FILES['fileToUpload']['name']);
                $accesskey = "eogTzrMdKpT4I+7P/xk0HrPpGrrEE8VTHVh8QJk49+u5g5krLzkjH4kt4NHfZir2NjU3vCAj9czKX/EcEtlLKQ==";
-               $storageAccount = 'jpnews';
+               $storageAccount = 'jpnewsstorage';
                $filetoUpload = $_FILES['fileToUpload']['tmp_name'];
                $containerName = 'public-contents';
                $blobName = basename($_FILES["fileToUpload"]["name"]);
 
-               $destinationURL = "https://$storageAccount.blob.core.windows.net/$containerName/$blobName";
+               $destinationURL = "";
                if ($blobName != "") {
+                  $destinationURL = "https://$storageAccount.blob.core.windows.net/$containerName/$blobName";
                   // Upload URL   
                   uploadBlob($filetoUpload, $storageAccount, $containerName, $blobName, $destinationURL, $accesskey);
                }
@@ -131,6 +132,7 @@
                $noidung = $_POST['fnoidung'];
                $userID = 1;
                $date_now = date("Y-m-d h:i:s");
+               
                $servername = "";
                $username = "";
                $password = "";
@@ -153,7 +155,7 @@
                if ($conn->connect_error) {
                   die("Connection failed: " . $conn->connect_error);
                } else {
-                  echo "connection successful<br/>";
+                  // echo "connection successful<br/>";
                }
 
                $sql = "INSERT INTO bantin_tbl (menuID, tieude, noidung, userID, insertDate, urlImage)
@@ -161,7 +163,7 @@
 
                if ($conn->query($sql) === TRUE) {
                   // printf("New Record has id %d.\n", $conn->insert_id);
-                  echo "created successfully:";
+                  echo "created successfully";
                } else {
                   echo "Error: " . $sql . "<br>" . $conn->error;
                }
