@@ -46,8 +46,8 @@
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                // $imageName = basename($_FILES['fileToUpload']['name']);
-               $accesskey = "eogTzrMdKpT4I+7P/xk0HrPpGrrEE8VTHVh8QJk49+u5g5krLzkjH4kt4NHfZir2NjU3vCAj9czKX/EcEtlLKQ==";
-               $storageAccount = 'jpnewsstorage';
+               $accesskey = "OkKPaSO25i+/3l5SEoUEncAn1/KiZv1ujbOO5bo3DD+g4STed4cw1r2GN8oZjixM6D7sXPA7/XdmH0Fn+mldhg==";
+               $storageAccount = 'faitostorage';
                $filetoUpload = $_FILES['fileToUpload']['tmp_name'];
                $containerName = 'public-contents';
                $blobName = basename($_FILES["fileToUpload"]["name"]);
@@ -132,7 +132,7 @@
                $noidung = $_POST['fnoidung'];
                $userID = 1;
                $date_now = date("Y-m-d h:i:s");
-               
+
                $servername = "";
                $username = "";
                $password = "";
