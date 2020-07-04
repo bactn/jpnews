@@ -46,7 +46,7 @@
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                // $imageName = basename($_FILES['fileToUpload']['name']);
-               $accesskey = "OkKPaSO25i+/3l5SEoUEncAn1/KiZv1ujbOO5bo3DD+g4STed4cw1r2GN8oZjixM6D7sXPA7/XdmH0Fn+mldhg==";
+               $accesskey = "X78SYPbFTckbY7jcu/Kxr4dkXGzTxLTlbwJuNY0a1ANypFpK9kNZySpGPqzXDBDnxle1vfWBY3y7X2Ivoq4jWQ==";
                $storageAccount = 'faitostorage';
                $filetoUpload = $_FILES['fileToUpload']['tmp_name'];
                $containerName = 'public-contents';
