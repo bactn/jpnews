@@ -1,6 +1,6 @@
 <?php
 header("Content-Type: application/json; charset=UTF-8");
-include ('dbconnection.php');
+include('dbconnection.php');
 
 $obj = json_decode($_GET["x"], false);
 $type = 1;
@@ -15,7 +15,7 @@ FROM bantin_tbl bantin
 INNER JOIN menu_tbl mt on mt.menuID = bantin.menuID where bantin.menuID=' . $type;
 
 // Thực hiện câu truy vấn, hàm này truyền hai tham số vào là biến kết nối và câu truy vấn
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($con, $sql);
 
 // Nếu thực thi không được thì thông báo truy vấn bị sai
 if (!$result) {
