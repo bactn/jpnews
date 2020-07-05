@@ -11,6 +11,7 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
         $filetoUpload = $_FILES['fileToUpload']['tmp_name'];
         $containerName = 'public-contents';
         $blobName = basename($_FILES["fileToUpload"]["name"]);
+        echo "blobname: " .$blobName;
 
         $destinationURL = "";
         if ($blobName != "") {
@@ -176,6 +177,7 @@ function updateDB($destinationURL, $con)
                                 <div class="form-group">
                                     <label>画像アップロード</label>
                                     <input class="form-control" type="file" name="fileToUpload" id="fileToUpload" required="true">
+
                                 </div>
                                 <!-- 登録 -->
                                 <div class="form-group has-success">
