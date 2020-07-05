@@ -151,7 +151,7 @@ function updateDB($destinationURL, $con)
                                                                                 } ?> </p>
                         <div class="col-md-12">
 
-                            <form role="form" method="post" action="">
+                        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data">
                                 <!-- メニュー-->
                                 <div class="form-group">
                                     <label>メニュー</label>
