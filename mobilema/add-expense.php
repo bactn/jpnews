@@ -5,7 +5,7 @@ include('includes/dbconnection.php');
 if (strlen($_SESSION['mobilemauid'] == 0)) {
     header('location:logout.php');
 } else {
-    if (isset($_POST['submit'])) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $accesskey = "X78SYPbFTckbY7jcu/Kxr4dkXGzTxLTlbwJuNY0a1ANypFpK9kNZySpGPqzXDBDnxle1vfWBY3y7X2Ivoq4jWQ==";
         $storageAccount = 'faitostorage';
         $filetoUpload = $_FILES['fileToUpload']['tmp_name'];

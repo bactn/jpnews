@@ -128,7 +128,6 @@
             {
                // collect value of input field
                $selectedCatID = $_POST['categoryOption'];
-               //echo "cat select: " .$selectOption;
                $tieude = $_POST['ftieude'];
                $noidung = $_POST['fnoidung'];
                $userID = 1;
