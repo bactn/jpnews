@@ -10,7 +10,7 @@
    <section class="hero">
       <div class="hero-body">
          <div class="container">
-         <p class="has-text-centered has-text-weight-bold title">FAITO</p>
+            <p class="has-text-centered has-text-weight-bold title">FAITO</p>
             <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data">
                <label class="label">メニュー：</label>
                <div class="select is-primary">
@@ -43,6 +43,7 @@
                </div>
             </form>
             <?php
+            include ('dbconnection.php');
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                // $imageName = basename($_FILES['fileToUpload']['name']);
@@ -60,7 +61,7 @@
                }
 
                // Update DB
-               updateDB($destinationURL);
+               updateDB($destinationURL, $con);
             }
 
 
@@ -123,7 +124,7 @@
                curl_close($ch);
             }
 
-            function updateDB($destinationURL)
+            function updateDB($destinationURL, $con)
             {
                // collect value of input field
                $selectedCatID = $_POST['categoryOption'];
@@ -132,43 +133,17 @@
                $noidung = $_POST['fnoidung'];
                $userID = 1;
                $date_now = date("Y-m-d h:i:s");
-
-               $servername = "";
-               $username = "";
-               $password = "";
-               $dbname = "";
-               // Parsing connnection string
-               foreach ($_SERVER as $key => $value) {
-                  if (strpos($key, "MYSQLCONNSTR_") !== 0) {
-                     continue;
-                  }
-
-                  $servername = preg_replace("/^.*Data Source=(.+?);.*$/", "\\1", $value);
-                  $dbname = preg_replace("/^.*Database=(.+?);.*$/", "\\1", $value);
-                  $username = preg_replace("/^.*User Id=(.+?);.*$/", "\\1", $value);
-                  $password = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
-               }
-
-               // Create connection
-               $conn = new mysqli($servername, $username, $password, $dbname);
-               // Check connection
-               if ($conn->connect_error) {
-                  die("Connection failed: " . $conn->connect_error);
-               } else {
-                  // echo "connection successful<br/>";
-               }
-
                $sql = "INSERT INTO bantin_tbl (menuID, tieude, noidung, userID, insertDate, urlImage)
                    VALUES (" . $selectedCatID . "," . "'" . $tieude . "'" . ", " . "'" . $noidung . "'" . ", " . "'" . $userID . "'" . "," . "'" . $date_now . "'" . "," . "'" . $destinationURL . "'" . ") ";
 
-               if ($conn->query($sql) === TRUE) {
+               if ($con->query($sql) === TRUE) {
                   // printf("New Record has id %d.\n", $conn->insert_id);
                   echo "created successfully";
                } else {
-                  echo "Error: " . $sql . "<br>" . $conn->error;
+                  echo "Error: " . $sql . "<br>" . $con->error;
                }
 
-               $conn->close();
+               $con->close();
             }
             ?>
          </div>

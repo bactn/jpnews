@@ -1,0 +1,286 @@
+<?php
+session_start();
+error_reporting(0);
+include('includes/dbconnection.php');
+if (strlen($_SESSION['mobilemauid']==0)) {
+  header('location:logout.php');
+  } else{
+
+if(isset($_POST['submit']))
+  {
+  	$userid=$_SESSION['mobilemauid'];
+    $dateexpense=$_POST['dateexpense'];
+     $item=$_POST['item'];
+     $costitem=$_POST['costitem'];
+    $query=mysqli_query($con, "insert into tblexpense(UserId,ExpenseDate,ExpenseItem,ExpenseCost) value('$userid','$dateexpense','$item','$costitem')");
+if($query){
+echo "<script>alert('Expense has been added');</script>";
+echo "<script>window.location.href='manage-expense.php'</script>";
+} else {
+echo "<script>alert('Something went wrong. Please try again');</script>";
+
+}
+  
+}
+  ?>
+<!DOCTYPE html>
+<html>
+<head>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Daily Expense Tracker || Add Expense</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/datepicker3.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+	
+	<!--Custom Font-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<?php include_once('includes/header.php');?>
+	<?php include_once('includes/sidebar.php');?>
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li class="active">Expense</li>
+			</ol>
+		</div><!--/.row-->
+
+   <section class="hero">
+      <div class="hero-body">
+         <div class="container">
+            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data">
+               <div class="field">
+                  <label class="label">メニュー：</label>
+                  <label class="checkbox">
+                     <input type="checkbox">
+                     ニュース
+                  </label>
+                  <label class="checkbox">
+                     <input type="checkbox">
+                     生活
+                  </label>
+                  <label class="checkbox">
+                     <input type="checkbox">
+                     学習
+                  </label>
+                  <label class="checkbox">
+                     <input type="checkbox">
+                     お仕事
+                  </label>
+                  <img src="test.png">
+               </div>
+               <div>
+                  <label class="label">タイトル：</label>
+                  <input class="input is-primary" name="ftieude" type="text" placeholder="タイトルを入力して下さい。">
+               </div>
+               <div>
+                  <label class="label">内容：</label>
+                  <textarea class="textarea is-primary" name="fnoidung" placeholder="内容を入力して下さい。"></textarea>
+               </div>
+               <!-- <label class="label"></label> -->
+               <!-- <div class="file">
+                     <label class="file-label">
+                     <input class="file-input" type="file" name="fileToUpload" id="fileToUpload">
+                     <span class="file-cta">
+                     <span class="file-icon">
+                     <i class="fas fa-upload" name="upload"></i>
+                     </span>
+                     <span class="file-label" >
+                     画像をアプロード
+                     </span>
+                     </span>
+                     <span class="file-name">
+                     </span>
+                     </label>
+                  </div> -->
+               <label class="label"></label>
+               <input type="file" name="fileToUpload" id="fileToUpload">
+               <label class="label"></label>
+               <div>
+                  <button class="button" type="submit">完了</button>
+               </div>
+            </form>
+            <?php
+            $target_dir = "picture/";
+            $imageName = basename($_FILES["fileToUpload"]["name"]);
+            $target_file = $target_dir . $imageName;
+            $uploadOk = 0;
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+            $accesskey = "LnR0IBUizNhXYAHHBPMLeYxhc4th/FrHiNojWLLg9AMZoTa6Jhp9tNUjOW14b4Qjwxw04erQ/V8I++nupqoKZA==";
+            $storageAccount = 'nothingjs';
+            $filetoUpload = $_FILES['fileToUpload']['tmp_name'];
+            $containerName = 'public-contents';
+            $blobName = 'test.png';
+
+            $destinationURL = "https://$storageAccount.blob.core.windows.net/$containerName/$blobName";
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+               echo 'file to upload: ' .$filetoUpload;
+               // upload image
+               //    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+               //    if($check !== false) {
+
+               //      echo "File is an image - " . $imageName . ".";
+               //      $uploadOk = 1;
+               //    } else {
+               //      echo "File is not an image.";
+               //      $uploadOk = 0;
+               //    }
+
+               //    // collect value of input field
+               //    $menuID = 1;
+               //    $tieude = $_POST['ftieude'];
+               //    $noidung = $_POST['fnoidung'];
+               //    // $urlImage = $_POST['furlImage'];
+               //    $upload = $_POST['furlImage'];
+               //    $userID = 1;
+               //    $servername = "fdb19.biz.nf";
+               //    $username = "3436937_mobilemysql";
+               //    $password = "pmt20102018";
+               //    $dbname = "3436937_mobilemysql";
+               //    $date_now = date("Y-m-d h:i:s");
+
+               //    // Create connection
+               //    $conn = new mysqli($servername, $username, $password, $dbname);
+               //    // Check connection
+               //    if ($conn->connect_error) {
+               //    die("Connection failed: " . $conn->connect_error);
+               //    }
+
+               //    $sql = "INSERT INTO bantin_tbl (menuID, tieude, noidung, userID, insertDate, urlImage)
+               //    VALUES (" .$menuID. "," ."'" .$tieude ."'". ", " ."'" .$noidung ."'". ", " ."'" .$userID."'". "," ."'" .$date_now . "'". "," ."'" .$imageName . "'". ") ";
+
+               //    if ($conn->query($sql) === TRUE) {
+               //    printf ("New Record has id %d.\n", $conn->insert_id);
+               //    echo "created successfully:";
+               //    } else {
+               //    echo "Error: " . $sql . "<br>" . $conn->error;
+               //    }
+
+               //    $conn->close();
+               //  // Check if file already exists
+               //  if (file_exists($target_file)) {
+               //    echo "Sorry, file already exists.";
+               //    $uploadOk = 0;
+               //    }
+
+               //    // Check file size
+               //    if ($_FILES["fileToUpload"]["size"] > 5000000) {
+               //    echo "Sorry, your file is too large.";
+               //    $uploadOk = 0;
+               //    }
+
+               //    // Allow certain file formats
+               //    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+               //    && $imageFileType != "gif" ) {
+               //    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+               //    $uploadOk = 0;
+               //    }
+
+               //    // Check if $uploadOk is set to 0 by an error
+               //    if ($uploadOk == 0) {
+               //    echo "Sorry, your file was not uploaded.";
+               //    // if everything is ok, try to upload file
+               //    } else {
+               //    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+               //      echo "The file ". $urlImage. " has been uploaded.";
+               //    } else {
+               //    echo "Sorry, there was an error uploading your file.";
+               //    }
+               //    } 
+               uploadBlob($filetoUpload, $storageAccount, $containerName, $blobName, $destinationURL, $accesskey);
+            }
+
+
+            function uploadBlob($filetoUpload, $storageAccount, $containerName, $blobName, $destinationURL, $accesskey)
+            {
+
+               $currentDate = gmdate("D, d M Y H:i:s T", time());
+               $handle = fopen($filetoUpload, 'r');
+               $fileLen = filesize($filetoUpload);
+               echo "file size:" . $fileLen;
+               $headerResource = "x-ms-blob-cache-control:max-age=3600\nx-ms-blob-type:BlockBlob\nx-ms-date:$currentDate\nx-ms-version:2015-12-11";
+               $urlResource = "/$storageAccount/$containerName/$blobName";
+
+               $arraysign = array();
+               $arraysign[] = 'PUT';               /*HTTP Verb*/
+               $arraysign[] = '';                  /*Content-Encoding*/
+               $arraysign[] = '';                  /*Content-Language*/
+               $arraysign[] = $fileLen;            /*Content-Length (include value when zero)*/
+               $arraysign[] = '';                  /*Content-MD5*/
+               $arraysign[] = 'image/png';         /*Content-Type*/
+               $arraysign[] = '';                  /*Date*/
+               $arraysign[] = '';                  /*If-Modified-Since */
+               $arraysign[] = '';                  /*If-Match*/
+               $arraysign[] = '';                  /*If-None-Match*/
+               $arraysign[] = '';                  /*If-Unmodified-Since*/
+               $arraysign[] = '';                  /*Range*/
+               $arraysign[] = $headerResource;     /*CanonicalizedHeaders*/
+               $arraysign[] = $urlResource;        /*CanonicalizedResource*/
+
+               $str2sign = implode("\n", $arraysign);
+
+               $sig = base64_encode(hash_hmac('sha256', urldecode(utf8_encode($str2sign)), base64_decode($accesskey), true));
+               $authHeader = "SharedKey $storageAccount:$sig";
+
+               $headers = [
+                  'Authorization: ' . $authHeader,
+                  'x-ms-blob-cache-control: max-age=3600',
+                  'x-ms-blob-type: BlockBlob',
+                  'x-ms-date: ' . $currentDate,
+                  'x-ms-version: 2015-12-11',
+                  'Content-Type: image/png',
+                  'Content-Length: ' . $fileLen
+               ];
+
+               $ch = curl_init($destinationURL);
+               curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+               curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+               curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+               curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+               curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+               curl_setopt($ch, CURLOPT_INFILE, $handle);
+               curl_setopt($ch, CURLOPT_INFILESIZE, $fileLen);
+               curl_setopt($ch, CURLOPT_UPLOAD, true);
+               $result = curl_exec($ch);
+
+               echo ('Result<br/>');
+               print_r($result);
+
+               echo ('Error<br/>');
+               print_r(curl_error($ch));
+
+               curl_close($ch);
+            }
+            ?>
+         </div>
+      </div>
+   </section>
+
+			<?php include_once('includes/footer.php');?>
+		</div><!-- /.row -->
+	</div><!--/.main-->
+	
+<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/chart.min.js"></script>
+	<script src="js/chart-data.js"></script>
+	<script src="js/easypiechart.js"></script>
+	<script src="js/easypiechart-data.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/custom.js"></script>
+	
+</body>
+</html>
+<?php }  ?>
