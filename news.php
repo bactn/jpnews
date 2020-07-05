@@ -72,7 +72,7 @@ if ($type == 1) {
 	$sql = 'SELECT mt.tenJPN as Title, bantin.tieude as Name, bantin.noidung as Details, DATE_FORMAT(bantin.insertDate,"%Y-%m-%d") as DateTime,
 bantin.tieude as Location, bantin.urlImage as ImageUrl 
 FROM bantin_tbl bantin 
-INNER JOIN menu_tbl mt on mt.menuID = bantin.menuID where bantin.menuID=' . $type . ' ORDER BY bantin.insertDate';
+INNER JOIN menu_tbl mt on mt.menuID = bantin.menuID where bantin.menuID=' . $type . ' ORDER BY bantin.insertDate DESC';
 
 	// Thực hiện câu truy vấn, hàm này truyền hai tham số vào là biến kết nối và câu truy vấn
 	$result = mysqli_query($con, $sql);
