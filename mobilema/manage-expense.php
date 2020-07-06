@@ -40,14 +40,14 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
 	<style> 
 .bbb {
   white-space: nowrap; 
-  width: 50px; 
+  width: 100px; 
   overflow: hidden;
   text-overflow: ellipsis; 
 }
 
 .ccc {
   white-space: nowrap; 
-  width: 200px; 
+  width: 350px; 
   overflow: hidden;
   text-overflow: ellipsis; 
 }
