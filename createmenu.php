@@ -9,6 +9,7 @@
 		<input type="submit">
 	</form>
 	<?php
+	include ('dbconnection.php');
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		// collect value of input field
 		$menuID = $_POST['fmenu'];
@@ -21,9 +22,9 @@
 		$username = "";
 		$password = "";
 		$dbname = "";
-		// Parsing connnection string
+		// Parsing connection string
 		foreach ($_SERVER as $key => $value) {
-			if (strpos($key, "MYSQLCONNSTR_") !== 0) {
+			if (strpos($key, "MYSQLconSTR_") !== 0) {
 				continue;
 			}
 
@@ -33,22 +34,15 @@
 			$password = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
 		}
 
-		// Create connection
-		$conn = new mysqli($servername, $username, $password, $dbname);
-		// Check connection
-		if ($conn->connect_error) {
-			die("Connection failed: " . $conn->connect_error);
-		}
-
 		$sql = "INSERT INTO menu_tbl (menuNo, tenVN, tenENG, tenJPN, insertDate) 
 	VALUES (" . $menuID . "," . "'" . $tieude . "'" . ", " . "'" . $tieude . "'" . ", " . "'" . $noidung . "'" . "," . "'" . $date_now . "'" . ") ";
-		if ($conn->query($sql) === TRUE) {
+		if ($con->query($sql) === TRUE) {
 			echo "created successfully";
 		} else {
-			echo "Error: " . $sql . "<br>" . $conn->error;
+			echo "Error: " . $sql . "<br>" . $con->error;
 		}
 
-		$conn->close();
+		$con->close();
 	}
 	?>
 </body>
