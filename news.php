@@ -69,8 +69,7 @@ if ($type == 1) {
 
 
 	// Câu truy vấn
-	$sql = 'SELECT *
-FROM bantin_tbl bantin';
+	$sql = 'SELECT * FROM bantin_tbl bantin';
 
 	// Thực hiện câu truy vấn, hàm này truyền hai tham số vào là biến kết nối và câu truy vấn
 	$result = mysqli_query($con, $sql);
