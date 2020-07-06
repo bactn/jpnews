@@ -98,5 +98,5 @@ INNER JOIN menu_tbl mt on mt.menuID = bantin.menuID where bantin.menuID=' . $typ
 	mysqli_free_result($result);
 }
 // Sau khi thực thi xong thì ngắt kết nối database
-mysqli_close($con);
+mysqli_close($conn);
 ?>
