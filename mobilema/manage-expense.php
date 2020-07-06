@@ -76,7 +76,7 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
 										<?php
 										$userid = $_SESSION['mobilemauid'];
 										$ret = mysqli_query($con, 'select bantin.noidung as noidung, bantin.tieude as tieude,
-										bantin.bantinID as bantinID, bantin.insertDate as insertDate, mt.tenJPN as menu from bantin_tbl bantin INNER JOIN menu_tbl mt on mt.menuID = bantin.menuID ORDER BY btt.insertDate DESC');
+										bantin.bantinID as bantinID, bantin.insertDate as insertDate, mt.tenJPN as menu from bantin_tbl bantin INNER JOIN menu_tbl mt on mt.menuID = bantin.menuID ORDER BY bantin.insertDate DESC');
 										$cnt = 1;
 										while ($row = mysqli_fetch_array($ret)) {
 										?>
