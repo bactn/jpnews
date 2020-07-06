@@ -1,5 +1,5 @@
 <?php
-include ('dbconection.php');
+include ('dbconnection.php');
 header("Content-Type: application/json; charset=UTF-8");
 $obj = json_decode($_GET["x"], false);
 $type = 1;
@@ -69,7 +69,10 @@ if ($type == 1) {
 
 
 	// Câu truy vấn
-	$sql = 'SELECT * FROM bantin_tbl bantin';
+	$sql = 'SELECT mt.tenJPN as Title, bantin.tieude as Name, bantin.noidung as Details, DATE_FORMAT(bantin.insertDate,"%Y-%m-%d") as DateTime,
+bantin.tieude as Location, bantin.urlImage as ImageUrl 
+FROM bantin_tbl bantin 
+INNER JOIN menu_tbl mt on mt.menuID = bantin.menuID where bantin.menuID='.$type .' ORDER BY bantin.insertDate DESC';
 
 	// Thực hiện câu truy vấn, hàm này truyền hai tham số vào là biến kết nối và câu truy vấn
 	$result = mysqli_query($con, $sql);
@@ -95,6 +98,7 @@ if ($type == 1) {
 	mysqli_free_result($result);
 }
 // Sau khi thực thi xong thì ngắt kết nối database
+
 mysqli_close($con);
 ?>
 

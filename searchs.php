@@ -33,5 +33,5 @@ echo json_encode($a);
 mysqli_free_result($result);
  
 // Sau khi thực thi xong thì ngắt kết nối database
-mysqli_close($conn);
+mysqli_close($con);
 ?>
