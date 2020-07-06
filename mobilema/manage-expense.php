@@ -83,7 +83,7 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
 											<tbody>
 												<tr>
 													<td><?php echo $cnt; ?></td>
-													<td><?php echo $row['tieude']; ?></td>
+													<td><?php echo $row['menu']; ?></td>
 													<td ><dd maxlength="100"><?php echo substr($row['tieude'],0,10); ?></dd></td>
 													<td><?php echo substr($row['noidung'],0,50); ?></td>
 													<td><?php echo $row['insertDate']; ?></td>
