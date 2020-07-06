@@ -2,9 +2,9 @@
 include ('dbconnection.php');
 header("Content-Type: application/json; charset=UTF-8");
 $obj = json_decode($_GET["x"], false);
-$type = 1;
+$type = 0;
 if (isset($_GET["type"])) {
-	$type = $_GET["type"];
+	$type = $_GET["type"] - 1;
 }
 // Kết nối CSDL và lưu vào biến kết nối
 // Các tham số gồm:
@@ -13,7 +13,7 @@ if (isset($_GET["type"])) {
 // - vertrigo: là mật khẩu đăng nhập vào database
 // - demo: Là database sẽ xử lý
 
-if ($type == 1) {
+if ($type == 0) {
 	$sql = 'SELECT mt.tenJPN as Title, bantin.tieude as Name, bantin.noidung as Details, DATE_FORMAT(bantin.insertDate,"%Y-%m-%d") as DateTime,
     bantin.tieude as Location, bantin.urlImage as ImageUrl 
     FROM bantin_tbl bantin 

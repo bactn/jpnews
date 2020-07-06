@@ -36,6 +36,18 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
 	<script src="js/html5shiv.js"></script>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+
+	<style> 
+
+/* 
+div.b {
+  white-space: nowrap; 
+  width: 50px; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  border: 1px solid #000000;
+} */
+</style>
 	</head>
 
 	<body>
