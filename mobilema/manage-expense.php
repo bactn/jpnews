@@ -75,7 +75,7 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
 										</thead>
 										<?php
 										$userid = $_SESSION['mobilemauid'];
-										$ret = mysqli_query($con, "select * from bantin_tbl ORDER BY insertDate DESC");
+										$ret = mysqli_query($con, "select tieude,noidung,bantinID,DATE_FORMAT(insertDate,'%Y-%m-%d'),menuID from bantin_tbl ORDER BY insertDate DESC");
 										$cnt = 1;
 										while ($row = mysqli_fetch_array($ret)) {
 										?>
@@ -83,7 +83,7 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
 												<tr>
 													<td><?php echo $cnt; ?></td>
 													<!-- <td>ニュース</td> -->
-													<td><?php echo substr($row['tieude'],0,10); ?></td>
+													<td ><dd maxlength="100"><?php echo substr($row['tieude'],0,10); ?></dd></td>
 													<td><?php echo substr($row['noidung'],0,50); ?></td>
 													<td><?php echo $row['insertDate']; ?></td>
 													<td>
