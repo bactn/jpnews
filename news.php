@@ -1,5 +1,5 @@
 <?php
-include('dbconection.php');
+include ('dbconection.php');
 header("Content-Type: application/json; charset=UTF-8");
 $obj = json_decode($_GET["x"], false);
 $type = 1;
