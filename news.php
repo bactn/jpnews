@@ -17,20 +17,20 @@ if ($type == 0) {
 	$sql = 'SELECT mt.tenJPN as Title, bantin.tieude as Name, bantin.noidung as Details, DATE_FORMAT(bantin.insertDate,"%Y-%m-%d") as DateTime,
     bantin.tieude as Location, bantin.urlImage as ImageUrl 
     FROM bantin_tbl bantin 
-    INNER JOIN menu_tbl mt on mt.menuID = bantin.menuID where bantin.menuID= 2 ORDER BY bantin.insertDate DESC LIMIT 2';
+    INNER JOIN menu_tbl mt on mt.menuID = bantin.menuID where bantin.menuID= 1 ORDER BY bantin.insertDate DESC LIMIT 2';
 
 	$sql1 = 'SELECT mt.tenJPN as Title, bantin.tieude as Name, bantin.noidung as Details, DATE_FORMAT(bantin.insertDate,"%Y-%m-%d")as DateTime,
     bantin.tieude as Location, bantin.urlImage as ImageUrl 
     FROM bantin_tbl bantin 
-    INNER JOIN menu_tbl mt on mt.menuID = bantin.menuID where bantin.menuID= 3 ORDER BY bantin.insertDate DESC LIMIT 2';
+    INNER JOIN menu_tbl mt on mt.menuID = bantin.menuID where bantin.menuID= 2 ORDER BY bantin.insertDate DESC LIMIT 2';
 	$sql2 = 'SELECT mt.tenJPN as Title, bantin.tieude as Name, bantin.noidung as Details, DATE_FORMAT(bantin.insertDate,"%Y-%m-%d") as DateTime,
     bantin.tieude as Location, bantin.urlImage as ImageUrl 
     FROM bantin_tbl bantin 
-    INNER JOIN menu_tbl mt on mt.menuID = bantin.menuID where bantin.menuID= 4 ORDER BY bantin.insertDate DESC LIMIT 2';
+    INNER JOIN menu_tbl mt on mt.menuID = bantin.menuID where bantin.menuID= 3 ORDER BY bantin.insertDate DESC LIMIT 2';
 	$sql3 = 'SELECT mt.tenJPN as Title, bantin.tieude as Name, bantin.noidung as Details, DATE_FORMAT(bantin.insertDate,"%Y-%m-%d") as DateTime,
     bantin.tieude as Location, bantin.urlImage as ImageUrl 
     FROM bantin_tbl bantin 
-    INNER JOIN menu_tbl mt on mt.menuID = bantin.menuID where bantin.menuID= 5 ORDER BY bantin.insertDate DESC LIMIT 2';
+    INNER JOIN menu_tbl mt on mt.menuID = bantin.menuID where bantin.menuID= 4 ORDER BY bantin.insertDate DESC LIMIT 2';
 	// Thực hiện câu truy vấn, hàm này truyền hai tham số vào là biến kết nối và câu truy vấn
 	$result = mysqli_query($con, $sql);
 	$result1 = mysqli_query($con, $sql1);
