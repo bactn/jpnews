@@ -159,7 +159,7 @@ function updateDB($destinationURL, $con)
                                         <option value="1">ニュース</option>
                                         <option value="2">生活</option>
                                         <option value="3">学習</option>
-                                        <option value="3">お仕事</option>
+                                        <option value="4">お仕事</option>
                                     </select>
                                 </div>
                                 <!-- タイトル -->
