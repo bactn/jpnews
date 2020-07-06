@@ -38,11 +38,16 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
 	<![endif]-->
 
 	<style> 
-
-
 .bbb {
   white-space: nowrap; 
   width: 50px; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+.ccc {
+  white-space: nowrap; 
+  width: 200px; 
   overflow: hidden;
   text-overflow: ellipsis; 
 }
@@ -95,8 +100,8 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
 												<tr>
 													<td><?php echo $cnt; ?></td>
 													<td><?php echo $row['menu']; ?></td>
-													<td class="bbb"><?php echo $row['tieude']; ?></td>
-													<td> <div class="bbb"><?php echo $row['noidung']; ?></div></td>
+													<td ><div class="bbb"><?php echo $row['tieude']; ?></td>
+													<td> <div class="ccc"><?php echo $row['noidung']; ?></div></td>
 													<td><?php echo $row['insertDate']; ?></td>
 													<td>
 														<a href="add-expense.php?editid=<?php echo $row['bantinID']; ?>">編集</a> -
