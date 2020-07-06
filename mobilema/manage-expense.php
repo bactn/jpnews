@@ -84,8 +84,8 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
 												<tr>
 													<td><?php echo $cnt; ?></td>
 													<td><?php echo $row['menu']; ?></td>
-													<td style="text-overflow: clip;"><?php $row['tieude']; ?></td>
-													<td style="text-overflow: clip;"> <?php echo $row['noidung']; ?></td>
+													<td style="text-overflow: ellipsis;"><?php $row['tieude']; ?></td>
+													<td style="text-overflow: ellipsis;"> <?php echo $row['noidung']; ?></td>
 													<td><?php echo $row['insertDate']; ?></td>
 													<td>
 														<a href="add-expense.php?editid=<?php echo $row['bantinID']; ?>">編集</a> -
