@@ -39,14 +39,13 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
 
 	<style> 
 
-/* 
-div.b {
+
+.bbb {
   white-space: nowrap; 
   width: 50px; 
   overflow: hidden;
   text-overflow: ellipsis; 
-  border: 1px solid #000000;
-} */
+}
 </style>
 	</head>
 
@@ -96,8 +95,8 @@ div.b {
 												<tr>
 													<td><?php echo $cnt; ?></td>
 													<td><?php echo $row['menu']; ?></td>
-													<td class="b"><?php echo $row['tieude']; ?></td>
-													<td> <div class="b"><?php echo $row['noidung']; ?></div></td>
+													<td class="bbb"><?php echo $row['tieude']; ?></td>
+													<td> <div class="bbb"><?php echo $row['noidung']; ?></div></td>
 													<td><?php echo $row['insertDate']; ?></td>
 													<td>
 														<a href="add-expense.php?editid=<?php echo $row['bantinID']; ?>">編集</a> -
