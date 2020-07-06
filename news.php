@@ -96,10 +96,6 @@ FROM bantin_tbl bantin';
 	mysqli_free_result($result);
 }
 // Sau khi thực thi xong thì ngắt kết nối database
-<<<<<<< HEAD
-mysqli_close($conn);
-?>
-=======
 mysqli_close($con);
 ?>
->>>>>>> 66a8dceaefdf1d8b086a564e34ce15cc794e370a
+
