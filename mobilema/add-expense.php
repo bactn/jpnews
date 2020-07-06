@@ -171,7 +171,7 @@ function updateDB($destinationURL, $con)
                                 <div class="form-group">
                                     <label>内容</label>
                                     <!-- input class="form-control" type="text" value="" required="true" name="costitem" -->
-                                    <textarea class="form-control" value="" required="true" name="costitem" placeholder="内容を入力して下さい。"></textarea>
+                                    <textarea class="form-control" cols="50" rows="24" value="" required="true" name="costitem" placeholder="内容を入力して下さい。"></textarea>
                                 </div>
                                 <!-- ファイアプローチ-->
                                 <div class="form-group">
