@@ -91,7 +91,7 @@ function updateDB($destinationURL, $con)
 {
     $userid = $_SESSION['mobilemauid'];
     $selectedCatID = $_POST['categoryOption'];
-    $date_now = new DateTime("now", new DateTimeZone(('Japan')));
+    $date_now = new DateTime("now", new DateTimeZone(('Asia/Tokyo')));
     $date_now = $date_now->format('Y-m-d H:i:s');
     $item = $_POST['item'];
     $costitem = $_POST['costitem'];
