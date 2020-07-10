@@ -88,7 +88,11 @@ INNER JOIN menu_tbl mt on mt.menuID = bantin.menuID where bantin.menuID='.$type 
 	// Vì các field trong database là id, name, phone, address nên
 	// khi vardum mang sẽ có cấu trúc tương tự
 	$a = array();
-
+	function sortFunction( $a, $b ) {
+		return strtotime($a["DateTime"]) - strtotime($b["DateTime"]);
+	}
+	usort($a, "sortFunction");
+		
 	while ($row = mysqli_fetch_assoc($result)) {
 		array_push($a, $row);
 	}
