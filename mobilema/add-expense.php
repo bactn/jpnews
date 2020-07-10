@@ -91,7 +91,7 @@ function updateDB($destinationURL, $con)
 {
     $userid = $_SESSION['mobilemauid'];
     $selectedCatID = $_POST['categoryOption'];
-    $date_now = date("Y-m-d");
+    $date_now = date("Y-m-d H:i:s");
     $item = $_POST['item'];
     $costitem = $_POST['costitem'];
 
