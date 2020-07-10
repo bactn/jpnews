@@ -23,10 +23,12 @@ if ($type == 0) {
     bantin.tieude as Description, bantin.urlImage as ImageUrl 
     FROM bantin_tbl bantin 
     INNER JOIN menu_tbl mt on mt.menuID = bantin.menuID where bantin.menuID= 2 ORDER BY bantin.insertDate DESC LIMIT 2';
+	
 	$sql2 = 'SELECT mt.tenJPN as Category, bantin.tieude as Title, bantin.noidung as Details, DATE_FORMAT(bantin.insertDate,"%Y-%m-%d") as DateTime,
     bantin.tieude as Description, bantin.urlImage as ImageUrl 
     FROM bantin_tbl bantin 
     INNER JOIN menu_tbl mt on mt.menuID = bantin.menuID where bantin.menuID= 3 ORDER BY bantin.insertDate DESC LIMIT 2';
+	
 	$sql3 = 'SELECT mt.tenJPN as Category, bantin.tieude as Title, bantin.noidung as Details, DATE_FORMAT(bantin.insertDate,"%Y-%m-%d") as DateTime,
     bantin.tieude as Description, bantin.urlImage as ImageUrl 
     FROM bantin_tbl bantin 
