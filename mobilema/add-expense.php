@@ -11,7 +11,7 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
         $filetoUpload = $_FILES['fileToUpload']['tmp_name'];
         $containerName = 'public-contents';
         $blobName = basename($_FILES["fileToUpload"]["name"]);
-        echo "blobname: " .$blobName;
+        // echo "blobname: " .$blobName;
 
         $destinationURL = "";
         if ($blobName != "") {
