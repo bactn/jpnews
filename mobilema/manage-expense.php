@@ -10,7 +10,6 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
 		$rowid = intval($_GET['delid']);
 		$query = mysqli_query($con, "delete from bantin_tbl where bantinID='$rowid'");
 		if ($query) {
-			echo "<script>alert('Record successfully deleted');</script>";
 			echo "<script>window.location.href='manage-expense.php'</script>";
 		} else {
 			echo "<script>alert('Something went wrong. Please try again');</script>";
