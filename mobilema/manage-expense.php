@@ -16,7 +16,7 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
 			echo "<script>alert('Something went wrong. Please try again');</script>";
 		}
 	}
-
+}
 ?>
 	<!DOCTYPE html>
 	<html>
@@ -38,20 +38,32 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
 	<![endif]-->
 
 	<style> 
-.bbb {
+.tieude {
   white-space: nowrap; 
   width: 100px; 
   overflow: hidden;
   text-overflow: ellipsis; 
 }
 
-.ccc {
+.noidung {
   white-space: nowrap; 
   width: 350px; 
   overflow: hidden;
   text-overflow: ellipsis; 
 }
 </style>
+<script>
+	function deleteId(deleteURL) {
+		var confirmDialog = confirm('削除しますか。');
+		if (confirmDialog == true) {
+			document.location = deleteURL;
+			return true;
+		} else {
+			alert('failed');
+			return false;
+		}
+	}
+</script>
 	</head>
 
 	<body>
@@ -100,12 +112,13 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
 												<tr>
 													<td><?php echo $cnt; ?></td>
 													<td><?php echo $row['menu']; ?></td>
-													<td ><div class="bbb"><?php echo $row['tieude']; ?></td>
-													<td> <div class="ccc"><?php echo $row['noidung']; ?></div></td>
+													<td ><div class="tieude"><?php echo $row['tieude']; ?></td>
+													<td> <div class="noidung"><?php echo $row['noidung']; ?></div></td>
 													<td><?php echo $row['insertDate']; ?></td>
 													<td>
 														<a href="add-expense.php?editid=<?php echo $row['bantinID']; ?>">編集</a> -
 														<a href="manage-expense.php?delid=<?php echo $row['bantinID']; ?>">削除</a>
+														<a href="javascript:deleteId(manage-expense.php?delid=<?php echo $row['bantinID']; ?>); return false;">削除2</a>
 													</td>
 												</tr>
 											<?php $cnt = $cnt + 1;
@@ -136,4 +149,3 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
 	</body>
 
 	</html>
-<?php }  ?>
