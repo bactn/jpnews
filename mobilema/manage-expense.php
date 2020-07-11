@@ -118,7 +118,7 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
 													<td>
 														<a href="add-expense.php?editid=<?php echo $row['bantinID']; ?>">編集</a> -
 														<a href="manage-expense.php?delid=<?php echo $row['bantinID']; ?>">削除</a>
-														<a href="javascript:deleteId(manage-expense.php?delid=<?php echo $row['bantinID']; ?>); return false;">削除2</a>
+														<a onClick="javascript: return confirm('削除しますか。'); href='manage-expense.php?delid=<?php echo $row['bantinID']; ?>"'>削除2</a>
 													</td>
 												</tr>
 											<?php $cnt = $cnt + 1;
