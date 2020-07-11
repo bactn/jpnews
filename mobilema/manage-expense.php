@@ -10,7 +10,6 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
 		$rowid = intval($_GET['delid']);
 		$query = mysqli_query($con, "delete from bantin_tbl where bantinID='$rowid'");
 		if ($query) {
-			echo "<script>alert('Record successfully deleted');</script>";
 			echo "<script>window.location.href='manage-expense.php'</script>";
 		} else {
 			echo "<script>alert('Something went wrong. Please try again');</script>";
@@ -116,9 +115,8 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
 													<td> <div class="noidung"><?php echo $row['noidung']; ?></div></td>
 													<td><?php echo $row['insertDate']; ?></td>
 													<td>
-														<a href="add-expense.php?editid=<?php echo $row['bantinID']; ?>">編集</a> -
-														<a href="manage-expense.php?delid=<?php echo $row['bantinID']; ?>">削除</a>
-														<a onClick="javascript: return confirm('削除しますか。');" href='manage-expense.php?delid=<?php echo $row['bantinID']; ?>"'>削除2</a>
+														<a href="add-expense.php?editid=<?php echo $row['bantinID']; ?>">編集</a> - 
+														<a onClick="javascript: return confirm('削除しますか。');" href='manage-expense.php?delid=<?php echo $row['bantinID']; ?>"'>削除</a>
 													</td>
 												</tr>
 											<?php $cnt = $cnt + 1;
