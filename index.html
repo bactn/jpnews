@@ -10,11 +10,12 @@
     <!--Add buttons to initiate auth sequence and sign out-->
     <button id="authorize_button" style="display: none;">Authorize</button>
     <button id="signout_button" style="display: none;">Sign Out</button>
+    <button id="send_button" style="display: none; margin-top: 20px;">Send Email</button>
     <pre id="content" style="white-space: pre-wrap;"></pre>
 
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
-      var CLIENT_ID = '319814317563-93t5ouc3ehsrtsb0h6j4h8g00osg5c6h.apps.googleusercontent.com';
+      var CLIENT_ID = '319814317563-kqea06ce8gnp2mq3kvqqlqmrnr00mggd.apps.googleusercontent.com';
       var API_KEY = 'AIzaSyAG2Z55mJoVcZdpuK0K2pIZlskbBCo6gSg';
 
       // Array of API discovery doc URLs for APIs used by the quickstart
@@ -26,6 +27,7 @@
 
       var authorizeButton = document.getElementById('authorize_button');
       var signoutButton = document.getElementById('signout_button');
+      var sendButton = document.getElementById('send_button');
 
       /**
        *  On load, called to load the auth2 library and API client library.
@@ -65,10 +67,12 @@
         if (isSignedIn) {
           authorizeButton.style.display = 'none';
           signoutButton.style.display = 'block';
+          sendButton.style.display = 'block';
           listFiles();
         } else {
           authorizeButton.style.display = 'block';
           signoutButton.style.display = 'none';
+          sendButton.style.display = 'none';
         }
       }
 
