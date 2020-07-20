@@ -11,7 +11,7 @@ if (strlen($_SESSION['mobilemauid'] == 0)) {
         $filetoUpload = $_FILES['fileToUpload']['tmp_name'];
         $containerName = 'public-contents';
         $blobName = basename($_FILES["fileToUpload"]["name"]);
-        echo "blobname: " .$blobName;
+        // echo "blobname: " .$blobName;
 
         $destinationURL = "";
         if ($blobName != "") {
@@ -91,7 +91,8 @@ function updateDB($destinationURL, $con)
 {
     $userid = $_SESSION['mobilemauid'];
     $selectedCatID = $_POST['categoryOption'];
-    $date_now = date("Y-m-d H:i:s");
+    $date_now = new DateTime("now", new DateTimeZone(('Asia/Tokyo')));
+    $date_now = $date_now->format('Y-m-d H:i:s');
     $item = $_POST['item'];
     $costitem = $_POST['costitem'];
 
