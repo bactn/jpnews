@@ -14,10 +14,10 @@
     $username = preg_replace("/^.*User Id=(.+?);.*$/", "\\1", $value);
     $password = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
  }
-echo $servername;
-echo $username;
-echo $password;
-echo $dbname;
+// echo $servername;
+// echo $username;
+// echo $password;
+// echo $dbname;
  // Create connection
  $con = new mysqli($servername, $username, $password, $dbname);
  // Check connection
