@@ -78,7 +78,7 @@ function uploadBlob($filetoUpload, $storageAccount, $containerName, $blobName, $
     curl_setopt($ch, CURLOPT_UPLOAD, true);
     $result = curl_exec($ch);
 
-    echo ('Result<br/>');
+    // echo ('Result<br/>');
     print_r($result);
 
     // echo ('Error<br/>');
@@ -104,8 +104,6 @@ function updateDB($destinationURL, $con)
         echo $query;
         echo "<script>alert('Something went wrong. Please try again');</script>";
     }
-
-    
 }
 ?>
 <!DOCTYPE html>

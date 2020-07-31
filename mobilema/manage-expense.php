@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=UTF-8');
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
